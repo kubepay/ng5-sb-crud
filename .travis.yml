@@ -16,9 +16,6 @@ cache:
   - "$HOME/.cache"
   - "$HOME/.m2/repository"
   - "$HOME/.sonar/cache"
-branches:
-  only:
-  - master
 before_script:
 - git config user.name "$COMMIT_AUTHOR_NAME"
 - git config user.email "$COMMIT_AUTHOR_EMAIL"
