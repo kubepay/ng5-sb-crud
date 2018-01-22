@@ -31,11 +31,11 @@ notifications:
   email: false
 deploy:
   provider: bintray
-    file: "descriptor.json"
-    user: "abhiesa"
-    dry-run: false
-    skip_cleanup: true
-    on:
-      tags: true
-    key:
-      secure: n230dH2F1iEJWOQqSDiGYK4O52KVZY3JfoPbAWDVooqKSu8z8R6MnZi9D/HPQ6ITfdSVGD9wvPcTuCFbIg+zJ6nlG4TYAWWyvs6Iif0eagqS1O9IfwYm9Gz9JNa5EYIKeUsiieA/q0+0Gn592tVIgDDg9w5PEq1VmOKwXUG+lrKA2m3bj5g/j5PQJVN6oyVD5zG4gCP0upFfDyu9shUdeJsW5FwVPQqbbL++pNkC48xRoheo0fzzKxeapbfL6apqkPZTCeAsmUNJW0YElQB/OE+OLioHmayhW9kQk5vtZNy3r5jrZ9rcZ8NSOrNU9SpdzNLFFRrzrVq/4uwSVWL8xTSA0J2kd7kaXpMnKtSz/Ipcdm+Xgl1v5dBvfgTA7BXwhvQ8Jef1SxM/JQ0lyVS/8YybQEyNL7CPqi5Y/UVxV3+Jpu1heaU+TAAZlECwwmqvpI+gMN1D22IVoBe6YvjG8fto7KHiJUG0FggA2jYFG2Mv7S2B3HfAwGzYc8hz3GBJgK8Qw6pxDrgPek+4wd97S8sTmqoY/9JqYQ0wAeYEFjhqafF2ImAfbNVxQUvQmjIVjrRu6e5lTbPvGPoSCXFE76a0oAfgcKRqIaFRjBxY/CNnyX9IxD6eKiJ3g4PuMwG93d0gM0ppNs9hQPVfz+n3WZ1tt5yOLQnUSS7Ogo9jYeo=
+  file: descriptor.json
+  user: "abhiesa"
+  dry-run: false
+  skip_cleanup: true
+  on:
+    tags: true
+  key:
+    secure: n230dH2F1iEJWOQqSDiGYK4O52KVZY3JfoPbAWDVooqKSu8z8R6MnZi9D/HPQ6ITfdSVGD9wvPcTuCFbIg+zJ6nlG4TYAWWyvs6Iif0eagqS1O9IfwYm9Gz9JNa5EYIKeUsiieA/q0+0Gn592tVIgDDg9w5PEq1VmOKwXUG+lrKA2m3bj5g/j5PQJVN6oyVD5zG4gCP0upFfDyu9shUdeJsW5FwVPQqbbL++pNkC48xRoheo0fzzKxeapbfL6apqkPZTCeAsmUNJW0YElQB/OE+OLioHmayhW9kQk5vtZNy3r5jrZ9rcZ8NSOrNU9SpdzNLFFRrzrVq/4uwSVWL8xTSA0J2kd7kaXpMnKtSz/Ipcdm+Xgl1v5dBvfgTA7BXwhvQ8Jef1SxM/JQ0lyVS/8YybQEyNL7CPqi5Y/UVxV3+Jpu1heaU+TAAZlECwwmqvpI+gMN1D22IVoBe6YvjG8fto7KHiJUG0FggA2jYFG2Mv7S2B3HfAwGzYc8hz3GBJgK8Qw6pxDrgPek+4wd97S8sTmqoY/9JqYQ0wAeYEFjhqafF2ImAfbNVxQUvQmjIVjrRu6e5lTbPvGPoSCXFE76a0oAfgcKRqIaFRjBxY/CNnyX9IxD6eKiJ3g4PuMwG93d0gM0ppNs9hQPVfz+n3WZ1tt5yOLQnUSS7Ogo9jYeo=
