@@ -5,7 +5,7 @@
 
 	<groupId>com.kubepay</groupId>
 	<artifactId>ng5-sb-crud</artifactId>
-	<version>1.0.1-SNAPSHOT</version>
+	<version>1.0.7-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>ng5-sb-crud</name>
@@ -23,6 +23,7 @@
 		<name>abhiesa</name>
 		<url>http://abhiesa.com</url>
 	</organization>
+
 	<scm>
 		<url>https://github.com/kubepay/ng5-sb-crud</url>
 		<connection>scm:git:https://github.com/kubepay/ng5-sb-crud.git</connection>
@@ -34,6 +35,7 @@
 		<system>Travis CI</system>
 		<url>https://travis-ci.org/kubepay/ng5-sb-crud</url>
 	</ciManagement>
+
 
 	<distributionManagement>
 		<repository>
@@ -59,6 +61,8 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
+		<github.global.server>github</github.global.server>
+		<github.global.oauth2Token>${env.GITHUBOAUTH2TOKEN}</github.global.oauth2Token>
 	</properties>
 
 	<dependencies>
@@ -129,7 +133,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-surefire-plugin</artifactId>
-				</plugin>-->
+				</plugin> -->
 			<plugin>
 				<groupId>org.eluder.coveralls</groupId>
 				<artifactId>coveralls-maven-plugin</artifactId>
@@ -203,7 +207,7 @@
 						</goals>
 					</execution>
 					<execution>
-					<id>report</id>
+						<id>report</id>
 						<phase>prepare-package</phase>
 						<goals>
 							<goal>report</goal>
@@ -218,8 +222,24 @@
 					<goals>install</goals>
 					<tagNameFormat>@{project.version}</tagNameFormat>
 					<autoVersionSubmodules>true</autoVersionSubmodules>
-					<releaseProfiles>releases</releaseProfiles>
+					<releaseProfiles>release</releaseProfiles>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.github.github</groupId>
+				<artifactId>site-maven-plugin</artifactId>
+				<version>0.12</version>
+				<configuration>
+					<message>Creating site for ${project.version}</message>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>site</goal>
+						</goals>
+						<phase>site</phase>
+					</execution>
+				</executions>
 			</plugin>
 
 		</plugins>
@@ -231,6 +251,42 @@
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
+		</profile>
+		<profile>
+			<id>heroku</id>
+			<activation>
+				<property>
+					<name>heroku</name>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.heroku.sdk</groupId>
+						<artifactId>heroku-maven-plugin</artifactId>
+						<version>2.0.2</version>
+						<configuration>
+							<appName>ng5-sb-crud-1</appName>
+							<includeTarget>false</includeTarget>
+							<includes>
+								<include>${basedir}/${full-artifact-name}</include>
+							</includes>
+							<jdkVersion>1.8</jdkVersion>
+							<processTypes>
+								<web>java $JAVA_OPTS -jar ${full-artifact-name}</web>
+							</processTypes>
+						</configuration>
+						<executions>
+							<execution>
+								<phase>verify</phase>
+								<goals>
+									<goal>deploy</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
 		</profile>
 		<profile>
 			<id>docker</id>
