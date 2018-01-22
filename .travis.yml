@@ -1,19 +1,32 @@
+sudo: required
 language: java
-sudo: false
-install: true
-before_install:
-- chmod +x mvnw
 jdk:
 - oraclejdk8
-script:
-- mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar
+services:
+- docker
+env:
+  global:
+  - APP_USER=abhiesa
+  - APP_NAME=ng5-sb-crud
+  - IMAGE_NAME=abhiesa/ng5-sb-crud
+  - DOCKER_REGISTRY_USER=abhiesa
+  - secure: kvhLJ3RAMTbbZcHoXoi8Ony7GhlZgF35Bj/ItdKhzBtRmm+CeXaVeI/9KR9qKjkLjie+Oji+99L/6UgyucPfqkalwFH5tnKQMm2gsWqOs3oY73UYM5W8pApJLUd87P+zDToo6zq+ECbPxbWglaIrEjNpfA6Gent/qdRKGXt3BWO5rjILO+vcG1YwgEpZWdLk8PchjnDeellAVLeU5Vt6TspLNxCGo/cDAUCVrBkqoVijUeTySFSe4LHSKdkQt8RDc1DjQW75ijBPpKfqihhLblY4Qo2hi0acPISslRM5b74kRbAYO+G/JDC5YtUHPj5dHR46W3szK56HAfkoBcgxhFjhbmtQsX8/KNw96r/RMmBFesaf7MZwo5kLG9RcSN3PThePp7Lpf5n6lmIW/NIiKqNemEyMm+Zv8G4FTR41/FR9hRNGQZmgNVAHmve7rMxkDI692IFUc25dv2giv+PvRsu5ZSbCf2QDE1qjcsQJGI/hZiOY6x2xpsnnAi/D2LtcUzE5FAkAvuMkKJA87A+hpg95q7+IdyaHJVUMs1jnbKZW0FZ+QmKT1RxKOoY4hYFQXHPoSupnfOrqBmNBkejzStVq/v6Sg2CaLvCu/Tfp0qdQ88V18XRAz1ighvbyRXPjl4KmU/QCkA57sXYdhGgRAG8G9fR0Xnh9HIODbr7J3UE=
 cache:
   directories:
+  - "$HOME/.cache"
   - "$HOME/.m2/repository"
   - "$HOME/.sonar/cache"
+branches:
+  only:
+  - master
+before_script:
+ - git config user.name "$COMMIT_AUTHOR_NAME"
+ - git config user.email "$COMMIT_AUTHOR_EMAIL"
+ - export COMMIT_MESSAGE=`git log -1 --oneline`
+script:
+- mvn clean compile test package verify
+after_success:
+- mvn clean test jacoco:report coveralls:report
 notifications:
   email: false
-addons:
-  sonarcloud:
-    token:
-      secure: KCtYwKYnpk4qy8Xv/FkOUOTvpnPjFxl6w5tK4WYkMgg8geMLVEuXmQMo3lkZ92ysQKAcLbYsa9ix3q1a0A5UClNJO57CTbOoswmtsfFhRj+vZwcvkBARTcN1sWF4NrkgniQJD3a9FP2QX/19TuWQNk5ZyR/44fvj0tjZVb7e2IPAV4svpQmwR1X4fKqFIhtlj2ZN9fM8gxs+S1/FkOzQGrssO0VTBA+Ohy32QCTqawqCONKE/gj/tQaXcdg0vX6yRTrR/GJ2yn8C3kHnFKZySYbYcfz269BRhKEzcNBpXJQgTQrTthOBI66K31RdNOsdOrH/2ONt7p1DZCRrgWJZWJ4KHiIBjyoGZo1EacwPun3ovmduT0QL/kSmVZjZfoK5OHZm9SQ126eXU2Rbb9MZwrb2vZABCwFQxqafF2qZQ+hijOvHPVMIhdT1l6hLGIXchNmO1aoxQqaODb0kKvaOzKyE71JLZVwMUmHiug7c8KwnpHOgFgYLhj1fjO0uZnC/2imHdDBS93jjNxVjj6Poh/Tz8/w+fcQQn3golD/JslQg1JijuM11mpy7DEHh2dB90aNiEyOMOuuBrF+WPvgN+Lp8wzAp2vCmRYlQk99RN5+xApzivRqcyNAnkMjAviQsEsAVbyc4ygLhgvPu5JLlwZrTKzbHExUzoANgt44yWxU=
+
