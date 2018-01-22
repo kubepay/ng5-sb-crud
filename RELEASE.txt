@@ -1,0 +1,7 @@
+With Love. And :)
+
+mvn --batch-mode release:prepare
+git tag -a 2.0.0 -m '2.0.0'
+mvn release:perform
+git push origin master
+git push origin --tags

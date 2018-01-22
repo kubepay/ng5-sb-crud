@@ -10,23 +10,31 @@ env:
   - APP_NAME=ng5-sb-crud
   - IMAGE_NAME=abhiesa/ng5-sb-crud
   - DOCKER_REGISTRY_USER=abhiesa
-  - secure: kvhLJ3RAMTbbZcHoXoi8Ony7GhlZgF35Bj/ItdKhzBtRmm+CeXaVeI/9KR9qKjkLjie+Oji+99L/6UgyucPfqkalwFH5tnKQMm2gsWqOs3oY73UYM5W8pApJLUd87P+zDToo6zq+ECbPxbWglaIrEjNpfA6Gent/qdRKGXt3BWO5rjILO+vcG1YwgEpZWdLk8PchjnDeellAVLeU5Vt6TspLNxCGo/cDAUCVrBkqoVijUeTySFSe4LHSKdkQt8RDc1DjQW75ijBPpKfqihhLblY4Qo2hi0acPISslRM5b74kRbAYO+G/JDC5YtUHPj5dHR46W3szK56HAfkoBcgxhFjhbmtQsX8/KNw96r/RMmBFesaf7MZwo5kLG9RcSN3PThePp7Lpf5n6lmIW/NIiKqNemEyMm+Zv8G4FTR41/FR9hRNGQZmgNVAHmve7rMxkDI692IFUc25dv2giv+PvRsu5ZSbCf2QDE1qjcsQJGI/hZiOY6x2xpsnnAi/D2LtcUzE5FAkAvuMkKJA87A+hpg95q7+IdyaHJVUMs1jnbKZW0FZ+QmKT1RxKOoY4hYFQXHPoSupnfOrqBmNBkejzStVq/v6Sg2CaLvCu/Tfp0qdQ88V18XRAz1ighvbyRXPjl4KmU/QCkA57sXYdhGgRAG8G9fR0Xnh9HIODbr7J3UE=
+  - secure: "kvhLJ3RAMTbbZcHoXoi8Ony7GhlZgF35Bj/ItdKhzBtRmm+CeXaVeI/9KR9qKjkLjie+Oji+99L/6UgyucPfqkalwFH5tnKQMm2gsWqOs3oY73UYM5W8pApJLUd87P+zDToo6zq+ECbPxbWglaIrEjNpfA6Gent/qdRKGXt3BWO5rjILO+vcG1YwgEpZWdLk8PchjnDeellAVLeU5Vt6TspLNxCGo/cDAUCVrBkqoVijUeTySFSe4LHSKdkQt8RDc1DjQW75ijBPpKfqihhLblY4Qo2hi0acPISslRM5b74kRbAYO+G/JDC5YtUHPj5dHR46W3szK56HAfkoBcgxhFjhbmtQsX8/KNw96r/RMmBFesaf7MZwo5kLG9RcSN3PThePp7Lpf5n6lmIW/NIiKqNemEyMm+Zv8G4FTR41/FR9hRNGQZmgNVAHmve7rMxkDI692IFUc25dv2giv+PvRsu5ZSbCf2QDE1qjcsQJGI/hZiOY6x2xpsnnAi/D2LtcUzE5FAkAvuMkKJA87A+hpg95q7+IdyaHJVUMs1jnbKZW0FZ+QmKT1RxKOoY4hYFQXHPoSupnfOrqBmNBkejzStVq/v6Sg2CaLvCu/Tfp0qdQ88V18XRAz1ighvbyRXPjl4KmU/QCkA57sXYdhGgRAG8G9fR0Xnh9HIODbr7J3UE="
+  - secure: "bm0QR0ply/n4MRKACwh4TZMOYxV6U/mDgn/z31zZwwNp7DkvUfNf12eLV4V0Y2m+1u4zTUh8rx7lyff6yE4at2q2mAZtD+rR6SXbQDDoa12bd2n/7SS6BgLtP5IylQYsz/qQpjc0aBhn5EcP+OkJXNjqWRWV/PDhWU3+9vLiPd/IBfNriD5jiy1tqkfiY/OcF1vIRXdZ+vF85KLHKp+EmVAIcb2aAAk8Yqn+GdSL7CmmUBHK5JPa76nHG7vYQlaNQHK6za2H+Pde61zE0QDBkCBmViGRPvmoMVNIVqYYFMzJmEj8krpWOcEAGgQbL/Z6Fc9nECRrRy/BL0LLVu6HfD6HTmGf3N8PNnLwxYvfNOkizWxqGVcIwDIoz6DkznLse16tttpkAsXHZVwhkMbhyk+VqdTIsnlWiacQbLW9Cg+GrqwNEdnv0tThOU2Jmu24lzuaw/st5+w7gY+Z+nWp58m7MjyVTPOufhWG+5wTvzu4QpBmMDENGJjJWVa6Uhk5HdUOTb0lRbXjFeQGOwwvua8l93CMhcRd11smZe/cYp6AUzVAlVfRanXPLcbXMvfiCMlPq0jSZf9ZM56dxfYmyOlR3aim5BRtLsr80b5tQ9QkdilJCFuls/I6nGjAZfO1RipsoHbyyitY/GC9B1JjL3hTwU9XZ+fdthRyPzSatjw="
 cache:
   directories:
   - "$HOME/.cache"
   - "$HOME/.m2/repository"
   - "$HOME/.sonar/cache"
-branches:
-  only:
-  - master
 before_script:
- - git config user.name "$COMMIT_AUTHOR_NAME"
- - git config user.email "$COMMIT_AUTHOR_EMAIL"
- - export COMMIT_MESSAGE=`git log -1 --oneline`
+- git config user.name "$COMMIT_AUTHOR_NAME"
+- git config user.email "$COMMIT_AUTHOR_EMAIL"
+- export COMMIT_MESSAGE=`git log -1 --oneline`
 script:
 - mvn clean compile test package verify
 after_success:
-- mvn clean test jacoco:report coveralls:report
+- mvn clean test jacoco:report coveralls:report site
 notifications:
   email: false
+deploy:
+  provider: script
+  script: 
+  - "cp .travis.settings.xml $HOME/.m2/settings.xml "
+  - "mvn deploy "
+  - "HEROKU_API_KEY=$HEROKU_API_KEY mvn clean install -Pheroku"
+  skip_cleanup: true
+  on:
+    tags: true
 
+  
