@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserServiceImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ng5-sb-crud</a> &gt; <a href="index.source.html" class="el_package">com.kubepay.service.impl</a> &gt; <span class="el_source">UserServiceImpl.java</span></div><h1>UserServiceImpl.java</h1><pre class="source lang-java linenums">package com.kubepay.service.impl;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.validation.constraints.NotNull;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.kubepay.entity.User;
+import com.kubepay.repository.UserRepository;
+import com.kubepay.service.UserService;
+import com.kubepay.service.dto.UserDto;
+import com.kubepay.service.exception.UserNotFoundException;
+import com.kubepay.service.exception.UserServiceException;
+
+@Service
+public class UserServiceImpl implements UserService {
+
+    private UserRepository userRepository;
+
+    @Autowired
+<span class="fc" id="L24">    public UserServiceImpl(final UserRepository userRepository) {</span>
+<span class="fc" id="L25">        this.userRepository = userRepository;</span>
+<span class="fc" id="L26">    }</span>
+
+    @Override
+    public UserDto getUserById(final Long id) {
+<span class="fc" id="L30">        final User user = userRepository.findOne(id);</span>
+<span class="fc bfc" id="L31" title="All 2 branches covered.">        if (null == user)</span>
+<span class="fc" id="L32">            throw new UserNotFoundException(id);</span>
+<span class="fc" id="L33">        return new UserDto(user);</span>
+    }
+
+    @Override
+    public List&lt;UserDto&gt; getAllUsers() {
+<span class="fc" id="L38">        return userRepository.findAll().stream().map(UserDto::new).collect(Collectors.toList());</span>
+    }
+
+    @Override
+    public UserDto createUser(@NotNull final UserDto userDto) {
+<span class="fc bfc" id="L43" title="All 2 branches covered.">        if (null != userDto.getUserId())</span>
+<span class="fc" id="L44">            throw new UserServiceException(&quot;User Creation request can't hold UserId property&quot;, true);</span>
+<span class="fc" id="L45">        final User user = userRepository.save(userDto.toUser());</span>
+<span class="fc" id="L46">        return new UserDto(user);</span>
+    }
+
+    @Override
+    public UserDto updateUser(final Long id, @NotNull final UserDto userDto) {
+<span class="fc bfc" id="L51" title="All 2 branches covered.">        if (null == userDto.getUserId())</span>
+<span class="fc" id="L52">            throw new UserServiceException(&quot;User Creation request can't hold UserId property&quot;, true);</span>
+<span class="fc" id="L53">        final User user = userRepository.findOne(id);</span>
+<span class="fc bfc" id="L54" title="All 2 branches covered.">        if (null == user)</span>
+<span class="fc" id="L55">            throw new UserNotFoundException(id);</span>
+<span class="fc bfc" id="L56" title="All 2 branches covered.">        if (user.getId().longValue() != userDto.getUserId().longValue())</span>
+<span class="fc" id="L57">            throw new UserServiceException(&quot;User requwst body didn't match with requesting path id&quot;, true);</span>
+
+<span class="fc" id="L59">        user.setFirstName(userDto.getUserFirstName());</span>
+<span class="fc" id="L60">        user.setLastName(userDto.getUserFirstName());</span>
+<span class="fc" id="L61">        user.setEmail(userDto.getUserEmail());</span>
+
+<span class="fc" id="L63">        final User updatedUser = userRepository.save(userDto.toUser());</span>
+<span class="fc" id="L64">        return new UserDto(updatedUser);</span>
+    }
+
+    @Override
+    public UserDto deleteUser(final Long id) {
+<span class="fc" id="L69">        final User user = userRepository.findOne(id);</span>
+<span class="fc bfc" id="L70" title="All 2 branches covered.">        if (null == user)</span>
+<span class="fc" id="L71">            throw new UserNotFoundException(id);</span>
+<span class="fc" id="L72">        userRepository.delete(user);</span>
+<span class="fc" id="L73">        return new UserDto(user);</span>
+    }
+
+    @Override
+    public boolean existsByEmail(UserDto user) {
+<span class="fc bfc" id="L78" title="All 2 branches covered.">        if (null != user.getUserEmail())</span>
+<span class="fc bfc" id="L79" title="All 2 branches covered.">            return null != userRepository.findByEmail(user.getUserEmail());</span>
+        else
+<span class="fc" id="L81">            return false;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

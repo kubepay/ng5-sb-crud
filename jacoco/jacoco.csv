@@ -1,0 +1,13 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+ng5-sb-crud,com.kubepay.entity,User,30,212,20,20,0,13,16,18,0,14
+ng5-sb-crud,com.kubepay.controller,UserControllerAdvice,33,3,2,0,6,1,4,1,3,1
+ng5-sb-crud,com.kubepay.controller,UserController,0,158,0,10,0,35,0,13,0,8
+ng5-sb-crud,com.kubepay,HelloReleaseApplication,5,73,0,0,2,6,1,4,1,4
+ng5-sb-crud,com.kubepay.entity.base,Auditable,61,151,23,15,0,5,24,8,5,8
+ng5-sb-crud,com.kubepay.service.impl,UserServiceImpl,0,159,0,16,0,32,0,15,0,7
+ng5-sb-crud,com.kubepay.service.dto,UserDto,22,213,16,22,0,11,13,17,0,11
+ng5-sb-crud,com.kubepay.service.exception,UserNotFoundException,3,6,0,0,1,3,1,1,1,1
+ng5-sb-crud,com.kubepay.service.exception,UserServiceException,3,7,0,0,1,3,1,1,1,1
+ng5-sb-crud,com.kubepay.conf,AuditorAwareImpl,0,5,0,0,0,2,0,2,0,2
+ng5-sb-crud,com.kubepay.conf,AuditConfiguration,0,7,0,0,0,2,0,2,0,2
+ng5-sb-crud,com.kubepay.conf,CORSFilter,0,44,0,2,0,12,0,4,0,3

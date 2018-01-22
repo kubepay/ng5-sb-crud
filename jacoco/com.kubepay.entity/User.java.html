@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>User.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ng5-sb-crud</a> &gt; <a href="index.source.html" class="el_package">com.kubepay.entity</a> &gt; <span class="el_source">User.java</span></div><h1>User.java</h1><pre class="source lang-java linenums">package com.kubepay.entity;
+
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import com.kubepay.entity.base.Auditable;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+<span class="fc" id="L23">@Data</span>
+<span class="pc bpc" id="L24" title="20 of 40 branches missed.">@EqualsAndHashCode(callSuper = true)</span>
+<span class="fc" id="L25">@ToString(callSuper=true)</span>
+<span class="fc" id="L26">@NoArgsConstructor</span>
+@Entity
+@Table(name = &quot;tbl_user&quot;)
+@EntityListeners(AuditingEntityListener.class)
+public class User extends Auditable&lt;String&gt; implements Serializable {
+
+    private static final long serialVersionUID = -2591785309420078663L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+<span class="fc" id="L36">    private Long id;</span>
+
+    @Column(nullable = false)
+    @NotBlank(message = &quot;First name is required&quot;)
+<span class="fc" id="L40">    private String firstName;</span>
+
+    @Column(nullable = false)
+    @NotBlank(message = &quot;Last name is required&quot;)
+<span class="fc" id="L44">    private String lastName;</span>
+
+    @Column(nullable = false)
+    @NotBlank(message = &quot;Email is required&quot;)
+<span class="fc" id="L48">    private String email;</span>
+
+<span class="fc" id="L50">    public User(final String firstName, final String lastName, final String email) {</span>
+<span class="fc" id="L51">        this.firstName = firstName;</span>
+<span class="fc" id="L52">        this.lastName = lastName;</span>
+<span class="fc" id="L53">        this.email = email;</span>
+<span class="fc" id="L54">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>
