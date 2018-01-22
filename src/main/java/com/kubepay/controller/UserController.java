@@ -38,7 +38,7 @@ public class UserController {
             log.info("no users found");
             return new ResponseEntity<List<UserDto>>(HttpStatus.NO_CONTENT);
         }
-        users.stream().forEach(user -> log.info(user.toString()));
+        users.stream().forEach(user -> log.debug(user.toString()));
         return ResponseEntity.ok(users);
     }
 
