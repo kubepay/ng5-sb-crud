@@ -198,17 +198,12 @@
 				<version>0.7.7.201606060606</version>
 				<executions>
 					<execution>
-						<id>pre-unit-test</id>
 						<goals>
 							<goal>prepare-agent</goal>
 						</goals>
-						<configuration>
-						  <propertyName>surefireArgLine</propertyName>
-						</configuration>
 					</execution>
 					<execution>
-						<id>post-unit-test</id>
-						<phase>test</phase>
+						<phase>prepare-package</phase>
 						<goals>
 							<goal>report</goal>
 						</goals>
