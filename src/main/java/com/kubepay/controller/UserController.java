@@ -17,7 +17,7 @@ import com.kubepay.service.dto.UserDto;
 
 import lombok.extern.slf4j.Slf4j;
 
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin("http://localhost:5000")
 @RestController
 @Slf4j
 @RequestMapping("/users")

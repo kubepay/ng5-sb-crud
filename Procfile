@@ -1,0 +1,1 @@
+web: java -jar target/ng5-sb-crud-1.0.8-SNAPSHOT.jar
